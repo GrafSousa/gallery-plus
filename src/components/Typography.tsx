@@ -18,23 +18,24 @@ const typography = tv({
   },
 });
 
-type ButtonVariants = VariantProps<typeof typography>;
+type TypographyVariants = VariantProps<typeof typography>;
 
-type TypographyProps<T extends React.ElementType = "span"> = ButtonVariants & {
-  as?: T;
-  className?: string;
-  children: React.ReactNode;
-} & React.ComponentProps<T>;
+type TypographyProps<T extends React.ElementType = "span"> =
+  TypographyVariants & {
+    as?: T;
+    className?: string;
+    children: React.ReactNode;
+  } & React.ComponentPropsWithoutRef<T>;
 
 export function Typography<T extends React.ElementType = "span">(
   props: TypographyProps<T>,
 ) {
-  const { as = "span", variant, className, children } = props;
+  const { as = "span", variant, className, children, ...rest } = props;
 
   const Component = as || "span";
 
   return (
-    <Component className={typography({ variant, className })}>
+    <Component className={typography({ variant, className })} {...rest}>
       {children}
     </Component>
   );
