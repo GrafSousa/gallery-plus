@@ -20,11 +20,12 @@ const button = tv({
 
 type ButtonVariants = VariantProps<typeof button>;
 
-type ButtonProps = React.ComponentProps<"button"> &
-  ButtonVariants & {
-    className?: string;
-  };
+type ButtonProps = React.ComponentProps<"button"> & ButtonVariants & {};
 
-export function Button({ className, variant, ...props }: ButtonProps) {
-  return <button className={button({ variant, className })} {...props} />;
+export function Button(props: ButtonProps) {
+  const { type = "button", className, variant, ...rest } = props;
+
+  return (
+    <button type={type} className={button({ variant, className })} {...rest} />
+  );
 }
