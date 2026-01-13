@@ -64,7 +64,7 @@ export function Trigger({ error }: TriggerProps) {
         </Typography>
       )}
 
-      {isValidSize && (
+      {!isValidSize && (
         <Typography className="text-accent-red">
           Arquivo maior que {maxFileSizeInMB}MB
         </Typography>
