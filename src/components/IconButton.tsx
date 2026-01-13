@@ -10,6 +10,7 @@ const iconButton = tv({
     variant: {
       primary: "bg-accent-brand hover:bg-accent-brand-light",
       secondary: "bg-background-secondary hover:bg-background-tertiary",
+      ghost: "bg-transparent hover:bg-border-primary/20",
     },
   },
   defaultVariants: {
