@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-const typography = tv({
+export const typography = tv({
   variants: {
     variant: {
       "heading-sm": "text-lg leading-[130%] font-bold",
