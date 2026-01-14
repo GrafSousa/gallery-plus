@@ -23,13 +23,14 @@ export function TextFieldControl(props: TextFieldControlProps) {
 
 type TextFieldRootProps = React.ComponentProps<"div">;
 
-export function TextFieldRoot(props: TextFieldRootProps) {
+export function TextFieldRoot({ className, ...props }: TextFieldRootProps) {
   return (
     <div
       className={twMerge(
         "flex items-center gap-3",
-        "border-background-primary rounded-sm border bg-transparent p-3",
+        "border-border-primary rounded-sm border bg-transparent p-3",
         "disabled:cursor-not-allowed",
+        className,
       )}
       {...props}
     />
