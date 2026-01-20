@@ -10,5 +10,5 @@ export function usePhotosApi() {
 
   const { apis } = apiContext;
 
-  return apis?.photos;
+  return apis?.photosApi;
 }

@@ -1,7 +1,11 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { routeTree } from "./routeTree.gen";
 import { ApiProvider } from "./contexts/ApiContext";
+
+const queryClient = new QueryClient();
 
 const router = createRouter({ routeTree });
 
@@ -14,7 +18,11 @@ declare module "@tanstack/react-router" {
 function App() {
   return (
     <ApiProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </ApiProvider>
   );
 }
