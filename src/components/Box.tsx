@@ -1,4 +1,4 @@
-type BoxProps<T extends React.ElementType = "div"> = {
+export type BoxProps<T extends React.ElementType = "div"> = {
   as?: T;
 } & React.ComponentPropsWithoutRef<T>;
 

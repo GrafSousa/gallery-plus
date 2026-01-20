@@ -2,13 +2,13 @@ import { useState, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 
-import { debounce } from "../helpers/debounce";
-import Logo from "../assets/images/gallery-plus-full-logo.svg?react";
+import { debounce } from "../../helpers/debounce";
+import Logo from "../../assets/images/gallery-plus-full-logo.svg?react";
 
-import { Box } from "./Box";
-import { Button } from "./Button";
-import { TextField } from "./TextField";
-import { Divider } from "./Divider";
+import { Box } from "../Box";
+import { Button } from "../Button";
+import { Divider } from "../Divider";
+import { TextField } from "../TextField";
 
 export function Header() {
   const [searchValue, setSearchValue] = useState("");
@@ -29,7 +29,7 @@ export function Header() {
   }
 
   return (
-    <Box as="header" className="flex items-center justify-between gap-10">
+    <Box as="header" className="mb-20 flex items-center justify-between gap-10">
       <Link to="/">
         <Logo className="h-5" />
       </Link>
@@ -48,7 +48,6 @@ export function Header() {
       <Divider orientation="vertical" className="h-10" />
 
       <Box className="flex items-center gap-3">
-        <Button variant="secondary">Nova foto</Button>
         <Button>Criar album</Button>
       </Box>
     </Box>

@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-export const typography = tv({
+export const typographyVariants = tv({
   variants: {
     variant: {
       "heading-sm": "text-lg leading-[130%] font-bold",
@@ -18,10 +18,10 @@ export const typography = tv({
   },
 });
 
-type TypographyVariants = VariantProps<typeof typography>;
+type ITypographyVariants = VariantProps<typeof typographyVariants>;
 
-type TypographyProps<T extends React.ElementType = "span"> =
-  TypographyVariants & {
+export type TypographyProps<T extends React.ElementType = "span"> =
+  ITypographyVariants & {
     as?: T;
     className?: string;
     children: React.ReactNode;
@@ -35,7 +35,7 @@ export function Typography<T extends React.ElementType = "span">(
   const Component = as || "span";
 
   return (
-    <Component className={typography({ variant, className })} {...rest}>
+    <Component className={typographyVariants({ variant, className })} {...rest}>
       {children}
     </Component>
   );

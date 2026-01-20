@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { ApiContext } from "../contexts/ApiContext";
 
 export function usePhotosApi() {
@@ -8,7 +10,17 @@ export function usePhotosApi() {
     throw new Error("usePhotosApi should be used with ApiContext");
   }
 
-  const { apis } = apiContext;
+  const {
+    apis: { photosApi },
+  } = apiContext;
 
-  return apis?.photosApi;
+  const { data, isLoading } = useQuery({
+    queryKey: ["photos"],
+    queryFn: async () => await photosApi.getPhotos(),
+  });
+
+  return {
+    photos: data || [],
+    isLoading,
+  };
 }

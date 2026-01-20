@@ -30,5 +30,8 @@
   --color-error-800: #912018;
   --color-error-900: #7a271a;
 
+  --spacing-photo-widget: 10.875rem;
+
+
   --font-sans: "Mulish", sans-serif;
 }

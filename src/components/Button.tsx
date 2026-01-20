@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { tv, type VariantProps } from "tailwind-variants";
 
-const button = tv({
+export const buttonVariants = tv({
   base: twMerge(
     "flex items-center justify-center px-3 py-2 rounded-sm cursor-pointer transition",
     "disabled:cursor-not-allowed disabled:opacity-50",
@@ -18,7 +18,7 @@ const button = tv({
   },
 });
 
-type ButtonVariants = VariantProps<typeof button>;
+type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 type ButtonProps = React.ComponentProps<"button"> & ButtonVariants & {};
 
@@ -26,6 +26,10 @@ export function Button(props: ButtonProps) {
   const { type = "button", className, variant, ...rest } = props;
 
   return (
-    <button type={type} className={button({ variant, className })} {...rest} />
+    <button
+      type={type}
+      className={buttonVariants({ variant, className })}
+      {...rest}
+    />
   );
 }
