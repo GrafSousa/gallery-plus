@@ -9,16 +9,20 @@ import { Box } from "../Box";
 import { Button } from "../Button";
 import { Divider } from "../Divider";
 import { TextField } from "../TextField";
+import { usePhotosApi } from "../../hooks/usePhotosApi";
 
 export function Header() {
-  const [searchValue, setSearchValue] = useState("");
+  const {
+    filters: { q, setQ },
+  } = usePhotosApi();
+  const [searchValue, setSearchValue] = useState(q);
 
   const debouncedSearch = useMemo(
     () =>
       debounce((text: string) => {
-        console.log("Buscando por:", text);
+        setQ(text);
       }, 500),
-    [],
+    [setQ],
   );
 
   function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -30,7 +34,7 @@ export function Header() {
 
   return (
     <Box as="header" className="mb-20 flex items-center justify-between gap-10">
-      <Link to="/">
+      <Link to="/home">
         <Logo className="h-5" />
       </Link>
 
