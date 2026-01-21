@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createStandardSchemaV1, parseAsString } from "nuqs";
 
 import { usePhotosApi } from "../../hooks/usePhotosApi";
 
@@ -9,18 +10,25 @@ import { Skeleton } from "../../components/Skeleton";
 import { PhotoWidget } from "./-components/PhotoWidget";
 import { AlbumFilter } from "./-components/AlbumFilter";
 
+const searchParams = {
+  albumId: parseAsString,
+};
+
 export const Route = createFileRoute("/home/")({
   component: HomePage,
+  validateSearch: createStandardSchemaV1(searchParams, {
+    partialOutput: true,
+  }),
 });
 
 function HomePage() {
-  const { photos, isLoading } = usePhotosApi();
+  const { photos, isLoadingPhotos } = usePhotosApi();
 
   return (
     <>
       <AlbumFilter />
       <ul className="mt-10 grid grid-cols-5 gap-9">
-        {isLoading
+        {isLoadingPhotos
           ? Array.from({ length: 10 }).map((_, index) => (
               <li key={index}>
                 <Box className="flex flex-col gap-4">

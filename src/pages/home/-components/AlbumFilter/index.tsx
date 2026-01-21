@@ -7,7 +7,7 @@ import { Skeleton } from "../../../../components/Skeleton";
 import { AlbumFilterItem } from "./AlbumFilterItem";
 
 export function AlbumFilter() {
-  const { albums, isLoading } = useAlbums();
+  const { albums, isLoadingAlbums } = useAlbums();
 
   return (
     <Box className="flex flex-row items-center">
@@ -16,7 +16,7 @@ export function AlbumFilter() {
       </Typography>
 
       <ul className="ml-3.5 flex flex-1 flex-row items-center gap-3">
-        {isLoading
+        {isLoadingAlbums
           ? Array.from({ length: 5 }).map((_, index) => (
               <Skeleton rounded="lg" className="h-7 w-16" key={index} />
             ))

@@ -2,7 +2,7 @@ import type { Photo } from "../../../models/photo";
 import type { HttpClient } from "../http";
 
 export interface PhotoApi {
-  getPhotos: () => Promise<Photo[]>;
+  getPhotos: (searchParams?: string) => Promise<Photo[]>;
 }
 
 export class PhotoServiceImpl implements PhotoApi {
@@ -14,8 +14,8 @@ export class PhotoServiceImpl implements PhotoApi {
     this.httpClient = httpClient;
   }
 
-  async getPhotos(): Promise<Photo[]> {
-    return this.httpClient.get(this.url);
+  async getPhotos(searchParams?: string): Promise<Photo[]> {
+    return this.httpClient.get(`${this.url}${searchParams}`);
   }
 }
 

@@ -17,6 +17,7 @@
     "@tanstack/react-query-devtools": "^5.91.2",
     "@tanstack/react-router": "^1.149.3",
     "@tanstack/react-router-devtools": "^1.149.3",
+    "nuqs": "^2.8.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.4.0",

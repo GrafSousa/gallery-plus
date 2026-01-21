@@ -3,12 +3,20 @@ import { twMerge } from "tailwind-merge";
 import type { Album } from "../../../../models/album";
 
 import { Typography } from "../../../../components/Typography";
+import { usePhotosApi } from "../../../../hooks/usePhotosApi";
 
 interface AlbumFilterItemProps {
   album: Album;
 }
 
 export function AlbumFilterItem({ album }: AlbumFilterItemProps) {
+  const {
+    filters: { albumId, setAlbumId },
+  } = usePhotosApi();
+
+  const isAlbumChecked = () =>
+    (album.id === "all" && albumId === null) || album.id === albumId;
+
   return (
     <li>
       <input
@@ -17,6 +25,10 @@ export function AlbumFilterItem({ album }: AlbumFilterItemProps) {
         type="radio"
         name="album-filter"
         className="peer sr-only"
+        defaultChecked={isAlbumChecked()}
+        onChange={(e) =>
+          setAlbumId(album?.id === "all" ? null : e?.target.value)
+        }
       />
       <Typography
         as="label"

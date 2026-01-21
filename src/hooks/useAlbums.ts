@@ -21,6 +21,6 @@ export function useAlbums() {
 
   return {
     albums: data || [],
-    isLoading,
+    isLoadingAlbums: isLoading,
   };
 }
