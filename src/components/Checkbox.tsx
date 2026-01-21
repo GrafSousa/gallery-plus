@@ -10,7 +10,7 @@ export function Checkbox(props: CheckboxProps) {
       <input
         type="checkbox"
         className={twMerge(
-          "peer size-3 cursor-pointer appearance-none overflow-hidden rounded-xs p-1 transition outline-none",
+          "peer size-4 cursor-pointer appearance-none overflow-hidden rounded-xs p-1 transition outline-none",
           "border-border-primary border",
           "hover:border-border-active",
           "disabled:cursor-not-allowed",
@@ -22,9 +22,10 @@ export function Checkbox(props: CheckboxProps) {
       />
 
       <CheckIcon
+        weight="bold"
         aria-hidden
         className={twMerge(
-          "absolute top-1/2 hidden size-1 -translate-y-1/2 cursor-pointer",
+          "absolute top-1/2 hidden size-3 -translate-y-1/2 cursor-pointer",
           "peer-disabled:cursor-not-allowed",
           "peer-checked:fill-label peer-checked:block",
         )}

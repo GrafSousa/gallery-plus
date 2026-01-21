@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useMatchRoute } from "@tanstack/react-router";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 
 import { debounce } from "../../helpers/debounce";
@@ -15,7 +15,11 @@ export function Header() {
   const {
     filters: { q, setQ },
   } = usePhotosApi();
+  const matchRoute = useMatchRoute();
+
   const [searchValue, setSearchValue] = useState(q);
+
+  const isHome = matchRoute({ to: "/home" });
 
   const debouncedSearch = useMemo(
     () =>
@@ -38,18 +42,22 @@ export function Header() {
         <Logo className="h-5" />
       </Link>
 
-      <TextField.Root className="flex-1">
-        <TextField.Prefix>
-          <MagnifyingGlassIcon className="fill-placeholder size-4" />
-        </TextField.Prefix>
-        <TextField.Control
-          value={searchValue}
-          placeholder="Buscar fotos"
-          onChange={handleSearchInputChange}
-        />
-      </TextField.Root>
+      {isHome && (
+        <>
+          <TextField.Root className="flex-1">
+            <TextField.Prefix>
+              <MagnifyingGlassIcon className="fill-placeholder size-4" />
+            </TextField.Prefix>
+            <TextField.Control
+              value={searchValue}
+              placeholder="Buscar fotos"
+              onChange={handleSearchInputChange}
+            />
+          </TextField.Root>
 
-      <Divider orientation="vertical" className="h-10" />
+          <Divider orientation="vertical" className="h-10" />
+        </>
+      )}
 
       <Box className="flex items-center gap-3">
         <Button>Criar album</Button>

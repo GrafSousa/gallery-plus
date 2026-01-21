@@ -32,6 +32,11 @@
 
   --spacing-photo-widget: 10.875rem;
 
+  --grid-photo-detail: 21rem 1fr;
 
   --font-sans: "Mulish", sans-serif;
+}
+
+@utility grid-cols-* {
+  grid-template-columns: --value(--grid-*);
 }
