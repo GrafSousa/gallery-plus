@@ -1,13 +1,21 @@
 import { ImageIcon } from "@phosphor-icons/react";
-import { Typography, typography as typographyVariants } from "../Typography";
+import { Typography, typographyVariants } from "../Typography";
 import { useFileInputContext } from "./Root";
 
-export function Item() {
+interface ItemProps {
+  onRemoveFile?: () => void;
+}
+
+export function Item({ onRemoveFile }: ItemProps) {
   const { file, onFileSelected } = useFileInputContext();
 
   if (!file) return;
 
   function handleRemoveFile() {
+    if (onRemoveFile) {
+      onRemoveFile();
+    }
+
     onFileSelected(undefined);
   }
 

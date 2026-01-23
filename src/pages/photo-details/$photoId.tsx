@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { usePhoto } from "../../hooks/usePhoto";
 import { useAlbums } from "../../hooks/useAlbums";
+import { usePhoto } from "../../hooks/usePhotosApi";
 
 import { Button } from "../../components/Button";
 import { Divider } from "../../components/Divider";

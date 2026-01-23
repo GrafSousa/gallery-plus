@@ -1,3 +1,4 @@
+import { tv, type VariantProps } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
 
 type TextFieldPrefixProps = React.ComponentProps<"div">;
@@ -21,19 +22,30 @@ export function TextFieldControl(props: TextFieldControlProps) {
   );
 }
 
-type TextFieldRootProps = React.ComponentProps<"div">;
+const textFieldRootVariants = tv({
+  base: `flex items-center gap-3
+        border-border-primary rounded-sm border bg-transparent p-3
+        disabled:cursor-not-allowed`,
+  variants: {
+    error: {
+      true: "border-accent-red",
+    },
+  },
+  defaultVariants: {
+    error: false,
+  },
+});
 
-export function TextFieldRoot({ className, ...props }: TextFieldRootProps) {
+type TextFieldRootProps = React.ComponentProps<"div"> &
+  VariantProps<typeof textFieldRootVariants>;
+
+export function TextFieldRoot({
+  className,
+  error,
+  ...props
+}: TextFieldRootProps) {
   return (
-    <div
-      className={twMerge(
-        "flex items-center gap-3",
-        "border-border-primary rounded-sm border bg-transparent p-3",
-        "disabled:cursor-not-allowed",
-        className,
-      )}
-      {...props}
-    />
+    <div className={textFieldRootVariants({ error, className })} {...props} />
   );
 }
 

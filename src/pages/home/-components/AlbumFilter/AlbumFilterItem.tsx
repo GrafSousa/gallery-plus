@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import type { Album } from "../../../../models/album";
 
 import { Typography } from "../../../../components/Typography";
-import { usePhotosApi } from "../../../../hooks/usePhotosApi";
+import { usePhotos } from "../../../../hooks/usePhotosApi";
 
 interface AlbumFilterItemProps {
   album: Album;
@@ -12,7 +12,7 @@ interface AlbumFilterItemProps {
 export function AlbumFilterItem({ album }: AlbumFilterItemProps) {
   const {
     filters: { albumId, setAlbumId },
-  } = usePhotosApi();
+  } = usePhotos();
 
   const isAlbumChecked = () =>
     (album.id === "all" && albumId === null) || album.id === albumId;

@@ -29,8 +29,27 @@ class FetchHttpClient implements HttpClient {
     body: unknown,
     options?: RequestInit,
   ): Promise<T> {
-    const response = await fetch(path, {
+    const isFormData = body instanceof FormData;
+
+    const response = await fetch(this.buildUrl(path), {
       method: "POST",
+      headers: {
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
+        ...(options?.headers || {}),
+      },
+      body: isFormData ? body : JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+
+    return response.json() as Promise<T>;
+  }
+
+  async put<T>(path: string, body: unknown, options?: RequestInit): Promise<T> {
+    const response = await fetch(this.buildUrl(path), {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         ...(options?.headers || {}),

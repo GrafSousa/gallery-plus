@@ -9,12 +9,14 @@ import { Box } from "../Box";
 import { Button } from "../Button";
 import { Divider } from "../Divider";
 import { TextField } from "../TextField";
-import { usePhotosApi } from "../../hooks/usePhotosApi";
+import { CreatePhotoDialog } from "./CreatePhotoDialog";
+
+import { usePhotos } from "../../hooks/usePhotosApi";
 
 export function Header() {
   const {
     filters: { q, setQ },
-  } = usePhotosApi();
+  } = usePhotos();
   const matchRoute = useMatchRoute();
 
   const [searchValue, setSearchValue] = useState(q);
@@ -60,6 +62,7 @@ export function Header() {
       )}
 
       <Box className="flex items-center gap-3">
+        <CreatePhotoDialog />
         <Button>Criar album</Button>
       </Box>
     </Box>

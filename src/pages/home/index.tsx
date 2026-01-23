@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createStandardSchemaV1, parseAsString } from "nuqs";
 
-import { usePhotosApi } from "../../hooks/usePhotosApi";
+import { usePhotos } from "../../hooks/usePhotosApi";
 
 import { Box } from "../../components/Box";
 import { Tag } from "../../components/Tag";
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/home/")({
 });
 
 function HomePage() {
-  const { photos, isLoadingPhotos } = usePhotosApi();
+  const { photos, isLoadingPhotos } = usePhotos();
 
   return (
     <>

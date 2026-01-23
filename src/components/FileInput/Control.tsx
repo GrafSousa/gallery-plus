@@ -2,8 +2,8 @@ import { useFileInputContext } from "./Root";
 
 type ControlProps = React.ComponentProps<"input">;
 
-export function Control(props: ControlProps) {
-  const { id, file, allowedExtensions, onFileSelected } = useFileInputContext();
+export function Control({ onChange, ...props }: ControlProps) {
+  const { id, allowedExtensions, onFileSelected } = useFileInputContext();
 
   const accept = allowedExtensions.map((ext) => `.${ext}`).join(",");
 
@@ -12,10 +12,12 @@ export function Control(props: ControlProps) {
 
     const files = Array.from(event.target.files);
 
+    if (onChange) {
+      onChange(event);
+    }
+
     onFileSelected(files[0]);
   }
-
-  if (file) return;
 
   return (
     <input

@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import { useFileInputContext } from "./Root";
 
-export function ImagePreview() {
+import { ImagePreview } from "../ImagePreview";
+
+export function FileInputImagePreview() {
   const { file } = useFileInputContext();
 
   const previewURL = useMemo(() => {
@@ -12,10 +14,5 @@ export function ImagePreview() {
 
   if (!file) return;
 
-  return (
-    <img
-      src={previewURL}
-      className="h-56 w-full overflow-hidden rounded-lg object-cover"
-    />
-  );
+  return <ImagePreview src={previewURL} />;
 }
