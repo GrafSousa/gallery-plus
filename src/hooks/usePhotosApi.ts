@@ -10,7 +10,7 @@ const searchParamsSerialized = createSerializer({
   albumId: parseAsString,
 });
 
-function usePhotoApi() {
+export function usePhotoApi() {
   const apiContext = useContext(ApiContext);
 
   if (Object.keys(apiContext).length === 0) {

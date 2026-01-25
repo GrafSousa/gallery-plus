@@ -6,12 +6,12 @@ import { debounce } from "../../helpers/debounce";
 import Logo from "../../assets/images/gallery-plus-full-logo.svg?react";
 
 import { Box } from "../Box";
-import { Button } from "../Button";
 import { Divider } from "../Divider";
 import { TextField } from "../TextField";
 import { CreatePhotoDialog } from "./CreatePhotoDialog";
 
 import { usePhotos } from "../../hooks/usePhotosApi";
+import { CreateAlbumDialog } from "./CreateAlbumDialog";
 
 export function Header() {
   const {
@@ -63,7 +63,7 @@ export function Header() {
 
       <Box className="flex items-center gap-3">
         <CreatePhotoDialog />
-        <Button>Criar album</Button>
+        <CreateAlbumDialog />
       </Box>
     </Box>
   );

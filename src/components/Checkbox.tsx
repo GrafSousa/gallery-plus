@@ -4,9 +4,14 @@ import { CheckIcon } from "@phosphor-icons/react";
 
 type CheckboxProps = React.ComponentProps<"input">;
 
-export function Checkbox(props: CheckboxProps) {
+export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
-    <label className="group relative inline-flex items-center justify-center">
+    <label
+      className={twMerge(
+        "group relative inline-flex items-center justify-center",
+        className,
+      )}
+    >
       <input
         type="checkbox"
         className={twMerge(

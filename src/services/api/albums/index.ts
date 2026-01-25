@@ -3,6 +3,7 @@ import type { HttpClient } from "../http";
 
 export interface AlbumsApi {
   getAlbums: () => Promise<Album[]>;
+  createAlbum: (title: string) => Promise<Album>;
 }
 
 class AlbumsServiceImpl implements AlbumsApi {
@@ -16,6 +17,10 @@ class AlbumsServiceImpl implements AlbumsApi {
 
   async getAlbums(): Promise<Album[]> {
     return this.httpClient.get(this.url);
+  }
+
+  async createAlbum(title: string): Promise<Album> {
+    return this.httpClient.post(this.url, { title });
   }
 }
 
