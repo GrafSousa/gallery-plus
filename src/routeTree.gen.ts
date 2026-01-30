@@ -9,68 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './pages/__root'
-import { Route as HomeRouteImport } from './pages/home'
-import { Route as PhotoDetailsIdRouteImport } from './pages/photo-details.$id'
+import { Route as HomeIndexRouteImport } from './pages/home/index'
+import { Route as PhotoDetailsPhotoIdRouteImport } from './pages/photo-details/$photoId'
 
-const HomeRoute = HomeRouteImport.update({
-  id: '/home',
-  path: '/home',
+const HomeIndexRoute = HomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PhotoDetailsIdRoute = PhotoDetailsIdRouteImport.update({
-  id: '/photo-details/$id',
-  path: '/photo-details/$id',
+const PhotoDetailsPhotoIdRoute = PhotoDetailsPhotoIdRouteImport.update({
+  id: '/photo-details/$photoId',
+  path: '/photo-details/$photoId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/home': typeof HomeRoute
-  '/photo-details/$id': typeof PhotoDetailsIdRoute
+  '/photo-details/$photoId': typeof PhotoDetailsPhotoIdRoute
+  '/home': typeof HomeIndexRoute
 }
 export interface FileRoutesByTo {
-  '/home': typeof HomeRoute
-  '/photo-details/$id': typeof PhotoDetailsIdRoute
+  '/photo-details/$photoId': typeof PhotoDetailsPhotoIdRoute
+  '/home': typeof HomeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/home': typeof HomeRoute
-  '/photo-details/$id': typeof PhotoDetailsIdRoute
+  '/photo-details/$photoId': typeof PhotoDetailsPhotoIdRoute
+  '/home/': typeof HomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/home' | '/photo-details/$id'
+  fullPaths: '/photo-details/$photoId' | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '/home' | '/photo-details/$id'
-  id: '__root__' | '/home' | '/photo-details/$id'
+  to: '/photo-details/$photoId' | '/home'
+  id: '__root__' | '/photo-details/$photoId' | '/home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  HomeRoute: typeof HomeRoute
-  PhotoDetailsIdRoute: typeof PhotoDetailsIdRoute
+  PhotoDetailsPhotoIdRoute: typeof PhotoDetailsPhotoIdRoute
+  HomeIndexRoute: typeof HomeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/home': {
-      id: '/home'
+    '/home/': {
+      id: '/home/'
       path: '/home'
       fullPath: '/home'
-      preLoaderRoute: typeof HomeRouteImport
+      preLoaderRoute: typeof HomeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/photo-details/$id': {
-      id: '/photo-details/$id'
-      path: '/photo-details/$id'
-      fullPath: '/photo-details/$id'
-      preLoaderRoute: typeof PhotoDetailsIdRouteImport
+    '/photo-details/$photoId': {
+      id: '/photo-details/$photoId'
+      path: '/photo-details/$photoId'
+      fullPath: '/photo-details/$photoId'
+      preLoaderRoute: typeof PhotoDetailsPhotoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  HomeRoute: HomeRoute,
-  PhotoDetailsIdRoute: PhotoDetailsIdRoute,
+  PhotoDetailsPhotoIdRoute: PhotoDetailsPhotoIdRoute,
+  HomeIndexRoute: HomeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
